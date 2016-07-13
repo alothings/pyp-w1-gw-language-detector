@@ -6,17 +6,17 @@ from .languages import LANGUAGES
 def detect_language(text, languages=LANGUAGES):
     """Returns the detected language of given text."""
 
-    ls_num = []
-    words_text = text.split()
-    for lang in languages:
-        words_lang = lang['common_words']
-        ls_num.append(num_of_common_words(words_text, words_lang))
+    num_of_common_words = []
+    text_words = text.split()
+    for lang_dict in languages:
+        lang_words = lang_dict['common_words']
+        num_of_common_words.append(num_common_elements(text_words, lang_words))
         
-    lang_index = ls_num.index(max(ls_num))
-    return languages[lang_index]['name']
+    max_lang_index = num_of_common_words.index(max(num_of_common_words))
+    return languages[max_lang_index]['name']
 
                 
-def num_of_common_words(ls_text, ls_lang):
-    return len([word for word in ls_text if word in ls_lang]);
+def num_common_elements(list_1, list_2):
+    return len([word for word in list_1 if word in list_2]);
     
    
